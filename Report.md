@@ -7,7 +7,9 @@ The environment consists of two agents, an observation space of 24 dimensions pe
 ### Learning algorithm
 
 The algorithm used to solve this problem is the Multi-Agent Deep Deterministic Policy Gradient ([MADDPG](https://papers.nips.cc/paper/2017/file/68a9750337a418a86fe06c1991a1d64c-Paper.pdf)). This algorithm is described in Figure 1.
+
 ![alt-text](https://raw.githubusercontent.com/acampos074/Multi-Agent-DDPG/master/Figures/maddpg_schematic.png)
+
 **Figure 1 | Schematic illustration of the [MADDPG algorithm](https://papers.nips.cc/paper/2017/file/68a9750337a418a86fe06c1991a1d64c-Paper.pdf).** MADDPG is an extension of the DDPG algorithm, where the critic of each agent has access to the actions and observations of all actors. DDPG is a type of actor-critic method. The actor observes a state and determines the best action. The critic observes a state-action pair and determines an action-value function.
 
 Both agents were trained for a fixed number of episodes and a fixed episode length. For a given state, the actor determines the optimal action deterministically.  [Ornstein-Uhlenbeck process](https://journals.aps.org/pr/abstract/10.1103/PhysRev.36.823) noise was added to the action output from the local actor network to build an exploration policy. The critic uses a state-action pair (were the action is determined by the actor) to estimate the optimal action-value function. This action-value function is then used to train the actor. Fig. 2 illustrates a schematic representation of this actor-critic interaction.
